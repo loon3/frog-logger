@@ -28,4 +28,4 @@ After these steps, you can start using Frog Logger to backup and pin your pepe c
 
 ## Troubleshooting
 
-If Frog Logger hangs up or is otherwise not working correctly, first try restarting IPFS Desktop.
+If Frog Logger hangs up or is otherwise not working proply, try restarting IPFS Desktop first then restarting Frog Logger.
