@@ -4,7 +4,6 @@ Frog Logger is a tool for pepe artists and collectors to backup their collection
 
 ![screenshot](./public/screenshot-1.png)
 
-![screenshot](./public/screenshot-2.png)
 
 ## Download
 You can download the latest version of Frog Logger for your operating system from the links below:
