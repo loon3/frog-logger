@@ -19,8 +19,13 @@ Before using Frog Logger, you need to do the following:
 1. Download and install IPFS Desktop.
 2. Open IPFS Desktop, click on Settings and scroll to IPFS CONFIG.
 3. Add http://localhost:5180 to your IPFS config file.
+4. Restart IPFS Desktop.
+5. Open Frog Logger.
 
 ![IPFS Config Screen](./src/assets/ipfs-config-screen.png)
 
 After these steps, you can start using Frog Logger to backup and pin your pepe collection.
 
+## Troubleshooting
+
+If Frog Logger hangs up or is otherwise not working correctly, first try restarting IPFS Desktop.
