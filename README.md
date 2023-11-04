@@ -9,9 +9,9 @@ Frog Logger is a tool for pepe artists and collectors to backup their collection
 ## Download
 You can download the latest version of Frog Logger for your operating system from the links below:
 
-- [Windows](./dist/release/FrogLogger-Setup.exe)
-- [MacOS](./dist/release/FrogLogger.dmg)
-- [Linux](./dist/release/FrogLogger.AppImage)
+- [Windows](./release/FrogLogger-Setup.exe)
+- [MacOS](./release/FrogLogger.dmg)
+- [Linux](./release/FrogLogger.AppImage)
 
 ## System Setup
 
