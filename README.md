@@ -2,6 +2,10 @@
 
 Frog Logger is a tool for pepe artists and collectors to backup their collection to their home computer as well as pin it to their own IPFS node for discovery by others. Pepes will only be saved by Frog Logger if they conform to the IPFS format in CIP-25 which includes pepes minted with Rare Pepe Wallet.
 
+![screenshot](./public/screenshot-1.png)
+
+![screenshot](./public/screenshot-2.png)
+
 ## Download
 You can download the latest version of Frog Logger for your operating system from the links below:
 
