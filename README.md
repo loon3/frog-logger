@@ -8,9 +8,9 @@ Frog Logger is a tool for pepe artists and collectors to backup their collection
 ## Download
 You can download the latest version of Frog Logger for your operating system from the links below:
 
-- [Windows](./release/Frog-Logger-Setup-1.0.0.exe)
-- [MacOS](./release/Frog-Logger-1.0.0.dmg)
-- [Linux](./release/Frog-Logger-1.0.0.AppImage)
+- [Windows](./release/Frog%20Logger%20Setup%201.0.1.exe)
+- [MacOS](./release/Frog%20Logger%201.0.1.dmg)
+- [Linux](./release/Frog%20Logger%201.0.1.AppImage)
 
 ## System Setup
 
@@ -28,4 +28,4 @@ After these steps, you can start using Frog Logger to backup and pin your pepe c
 
 ## Troubleshooting
 
-If Frog Logger hangs up or is otherwise not working proply, try restarting IPFS Desktop first then restarting Frog Logger.
+If Frog Logger hangs up or is otherwise not working properly, first try restarting IPFS Desktop then restarting Frog Logger.

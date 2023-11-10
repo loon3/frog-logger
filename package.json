@@ -3,7 +3,7 @@
   "description": "Frog Logger is a tool for pepe artists and collectors to backup their collection to their home computer as well as pin it to their own IPFS node for discovery by others.",
   "author": "Joe Looney",
   "private": true,
-  "version": "1.0.0",
+  "version": "1.0.1",
   "main": "electron-starter.cjs",
   "type": "module",
   "scripts": {

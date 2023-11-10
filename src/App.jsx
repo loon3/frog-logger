@@ -29,7 +29,7 @@ function getOptions(params, method) {
   return options
 }
 
-async function fetchBalances(address, apiServer, offset = 0) {
+async function fetchBalances(address, apiServer, setStatusMessages, offset = 0) {
   let method = 'get_balances';
   let filters = [{field: 'address', op: '==', value: address}, {field: 'quantity', op: '>', value: 0}];
   let params = {
@@ -46,14 +46,15 @@ async function fetchBalances(address, apiServer, offset = 0) {
 
   // If result length is 1000, call the function again with offset increased by 1000
   if(data.result.length === 1000) {
-      const nextAssetNames = await fetchBalances(address, apiServer, offset + 1000);
+      setStatusMessages(prevMessages => [...prevMessages, 'Fetching pepes...']);
+      const nextAssetNames = await fetchBalances(address, apiServer, setStatusMessages, offset + 1000);
       return [...assetNames, ...nextAssetNames];
   } else {
       return assetNames;
   }
 }
 
-async function getAssetsData(assets, apiServer) {
+async function getAssetsData(assets, apiServer, setStatusMessages) {
   let method = 'get_asset_info';
   
   // Split assets into chunks of 1000
@@ -69,6 +70,7 @@ async function getAssetsData(assets, apiServer) {
       assets: chunk,
     }
     const options = getOptions(params, method);
+    setStatusMessages(prevMessages => [...prevMessages, 'Fetching CIDs...']);
     const res = await fetch(apiServer, options);
     const data = await res.json();
     results = [...results, ...data.result];
@@ -85,9 +87,9 @@ async function getAssetsData(assets, apiServer) {
   return ipfsAssets;
 }
 
-async function fetchCidsFromAddress(address, counterpartyApi) {
-  const assets = await fetchBalances(address, counterpartyApi);
-  const assetCids = await getAssetsData(assets, counterpartyApi);
+async function fetchCidsFromAddress(address, counterpartyApi, setStatusMessages) {
+  const assets = await fetchBalances(address, counterpartyApi, setStatusMessages);
+  const assetCids = await getAssetsData(assets, counterpartyApi, setStatusMessages);
   return assetCids;
 }
 
@@ -189,15 +191,28 @@ const IPFSFormWithAddress = () => {
     }
   };
 
+  const testIpfsConnection = async () => {
+    try {
+      const response = await fetch(`${ipfsApiEndpoint}/api/v0/diag/sys`, { method: 'POST' });
+      const text = await response.text();
+      setStatusMessages(prevMessages => [...prevMessages, 'IPFS API found!']);
+      console.log('System diagnostic information:', text);
+    } catch (error) {
+      setStatusMessages(prevMessages => [...prevMessages, `IPFS API not found at ${ipfsApiEndpoint}.`]);
+      throw error;
+    }
+  };
+
   const handleSubmit = async (event) => {
     event.preventDefault();
     setStatusMessages(prevMessages => [...prevMessages, 'Processing...']); // Clear any previous status messages
     setProgress(1); // Reset progress at the start
   
     try {
-      
-      setStatusMessages(prevMessages => [...prevMessages, 'Fetching IPFS assets...']);
-      const ipfsAssets = await fetchCidsFromAddress(address, counterpartyApi);
+      await testIpfsConnection();
+
+      setStatusMessages(prevMessages => [...prevMessages, 'Fetching pepes...']);
+      const ipfsAssets = await fetchCidsFromAddress(address, counterpartyApi, setStatusMessages);
       const totalTasks = ipfsAssets.length * 2; // Total number of tasks
       let completedTasks = 0; // Number of completed tasks
   
@@ -380,8 +395,11 @@ function App() {
        
         <p className="mb-4 text-left">2. Open <span className="font-bold">IPFS Desktop</span>, click on <span className="font-bold">Settings</span> and scroll to <span className="font-bold">IPFS CONFIG.</span></p>
 
-        <p className="text-left">3. Add <span className="font-bold">http://localhost:5180</span> to your IPFS config file.</p> 
-        <img src={ipfsConfigScreen} className="w-full" alt="logo" />
+        <p className="mb-4 text-left">3. If the Access-Control-Allow-Origin object is missing from the IPFS config, <span className="font-bold">restart IPFS Desktop.</span></p>
+
+        <p className="text-left">4. Add <span className="font-bold">http://localhost:5180</span> to your IPFS config file.</p> 
+        
+        <img src={ipfsConfigScreen} className="w-2/3 mx-auto" alt="logo" />
 
         <button onClick={closeInfoModal} className="mt-8 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Close</button>
         {hideShowOption ? null : (
