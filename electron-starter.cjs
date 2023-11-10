@@ -1,5 +1,5 @@
 // electron-starter.cjs
-const { app, BrowserWindow } = require('electron');
+const { app, BrowserWindow, clipboard } = require('electron');
 
 let mainWindow;
 
@@ -25,8 +25,17 @@ async function createWindow() {
   // Remove the application menu
   Menu.setApplicationMenu(null);
 
-  // Show devtools on right click
+  // Show devtools and paste option on right click
   const contextMenu = new Menu();
+  contextMenu.append(new MenuItem({
+    label: 'Paste',
+    click: () => {
+      mainWindow.webContents.insertText(clipboard.readText());
+    }
+  }));
+  contextMenu.append(new MenuItem({
+    type: 'separator'
+  }));
   contextMenu.append(new MenuItem({
     label: 'Debug',
     click: () => {

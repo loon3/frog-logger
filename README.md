@@ -18,9 +18,10 @@ Before using Frog Logger, you need to do the following:
 
 1. Download and install IPFS Desktop.
 2. Open IPFS Desktop, click on Settings and scroll to IPFS CONFIG.
-3. Add http://localhost:5180 to your IPFS config file.
-4. Restart IPFS Desktop.
-5. Open Frog Logger.
+3. If the Access-Control-Allow-Origin object is missing from the IPFS config, restart IPFS Desktop.
+4. Add http://localhost:5180 to your IPFS config file.
+5. Restart IPFS Desktop.
+6. Open Frog Logger.
 
 ![IPFS Config Screen](./src/assets/ipfs-config-screen.png)
 
